@@ -24,9 +24,9 @@ public class ApplicationLifecycleBean {
     String port;
     @ConfigProperty(name = "quarkus.profile")
     String profile;
-    @ConfigProperty(name = "quarkus.application.name")
+    @ConfigProperty(name = "quarkus.application.name", defaultValue = "customer-service")
     String name;
-    @ConfigProperty(name = "quarkus.application.version")
+    @ConfigProperty(name = "quarkus.application.version", defaultValue = "0.0.0")
     String version;
     @ConfigProperty(name = "quarkus.default-locale")
     String local;
@@ -38,18 +38,7 @@ public class ApplicationLifecycleBean {
     }
 
     void onStart(@Observes StartupEvent ev) {
-        LOGGER.info("\n"+
-                "         _____\n" +
-                "   _  __/__  /\n" +
-                "  | |/_/  / / \n" +
-                " _>  <   / /  \n" +
-                "/_/|_|  /_/   \n" +
-                "\n" +
-                name + ":"      + version   + "\n" +
-                "HTTP-Port: "   + port      + "\n" +
-                "Profile:   "   + profile   + "\n" +
-                "Local:     "   + local     + "\n"
-        );
+        banner();
 
         Customer customer = new Customer();
         customer.setName("Mueller");
@@ -62,5 +51,20 @@ public class ApplicationLifecycleBean {
 
         customerService.setCustomer(customer);
         contractService.setContract(contract);
+    }
+
+    private void banner() {
+        LOGGER.info("\n"+
+                "         _____\n" +
+                "   _  __/__  /\n" +
+                "  | |/_/  / / \n" +
+                " _>  <   / /  \n" +
+                "/_/|_|  /_/   \n" +
+                "\n" +
+                name + ":"      + version   + "\n" +
+                "HTTP-Port: "   + port      + "\n" +
+                "Profile:   "   + profile   + "\n" +
+                "Local:     "   + local     + "\n"
+        );
     }
 }

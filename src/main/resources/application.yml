@@ -17,3 +17,9 @@ quarkus:
     base-jvm-image: gcr.io/distroless/java:11
   banner:
     enabled: false
+  swagger-ui:
+    always-include: true
+  smallrye-health:
+    ui:
+      always-include: true
+

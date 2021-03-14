@@ -1,0 +1,19 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: somePassword
+    jdbc:
+      url: jdbc:postgresql://192.168.0.213:5432/customer
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+  container-image:
+    build: true
+    name: customer
+    group: pdelmonego
+    tag: 1.0.0
+  jib:
+    base-jvm-image: gcr.io/distroless/java:11
+  banner:
+    enabled: false
